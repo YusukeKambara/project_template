@@ -1,5 +1,6 @@
-VERSION := 0.0.1
+VERSION := 0.0.2
 IMAGE_NAME := helloworld
+SERVICE_NAME := helloworld
 PROJECT_NAME := develop
 
 TOPIC_NAME := jp_company_names
@@ -18,7 +19,7 @@ build:
 						 --project $(PROJECT_ID)
 
 deploy:
-	gcloud run deploy $(IMAGE_NAME) --image gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(VERSION) \
+	gcloud run deploy $(SERVICE_NAME) --image gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(VERSION) \
 									--platform managed \
 									--allow-unauthenticated \
 									--set-env-vars=TARGET=test \
@@ -51,8 +52,8 @@ bind_to_pubsub:
 		--role=roles/iam.serviceAccountTokenCreator
 
 	@echo [Create subscription for call the cloud run]
-	$(eval SERVICE_URL := $(shell gcloud run services list --platform managed --filter="metadata.name=$(IMAGE_NAME)" --format="value(status.url)"))
-	gcloud pubsub subscriptions create $(IMAGE_NAME) --topic $(TOPIC_NAME) \
+	$(eval SERVICE_URL := $(shell gcloud run services list --platform managed --filter="metadata.name=$(SERVICE_NAME)" --format="value(status.url)"))
+	gcloud pubsub subscriptions create $(SERVICE_NAME) --topic $(TOPIC_NAME) \
 		--push-endpoint=$(SERVICE_URL)/ \
 		--push-auth-service-account=$(SERVICE_ACCOUNT)@$(PROJECT_ID).iam.gserviceaccount.com
 
