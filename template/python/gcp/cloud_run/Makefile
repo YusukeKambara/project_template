@@ -1,4 +1,4 @@
-VERSION := 0.0.1
+VERSION := 0.0.2
 IMAGE_NAME := helloworld
 SERVICE_NAME := helloworld
 PROJECT_NAME := develop
