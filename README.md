@@ -1,2 +1,9 @@
 # project_template
-This feature is to create the project template for development.
+
+project template for development by each case.
+
+## Included templates
+
+### == Python ==
+
+- Cloud Run (HTTP trigger, Cloud Pub/Sub trigger)
