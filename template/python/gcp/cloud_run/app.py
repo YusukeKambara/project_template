@@ -2,6 +2,7 @@ import os
 import sys
 import logging
 import base64
+import json
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -29,6 +30,10 @@ def index():
         name = "World"
         if isinstance(pubsub_message, dict) and "data" in pubsub_message:
             name = base64.b64decode(pubsub_message["data"]).decode("utf-8").strip()
+            try:
+                name = json.loads(name)
+            except:
+                pass
 
         # Flush the stdout to avoid log buffering.
         sys.stdout.flush()

@@ -1,5 +1,21 @@
 # Change Log
 
+## 0.0.3
+
+Released on April 22, 2020
+
+### Added
+
+* Nothing
+
+### Changed
+
+* Changed to not use the back-quotes to separate the variable
+
+### Removed
+
+* Nothing
+
 ## 0.0.2
 
 Released on April 16, 2020
